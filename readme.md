@@ -14,6 +14,13 @@ Only the groovy version has support for numbering bookmarks to retain their orde
 
 Apart from that they are functionally equivalent
 
+## Local running
+
+there is a container image that automatically built you can use instead of building locally
+```
+docker run --rm -it ghcr.io/georgettica/bookmark-generator:master 
+```
+
 ## Example input yaml:
 
     ---
