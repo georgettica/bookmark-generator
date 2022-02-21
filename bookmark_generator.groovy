@@ -9,6 +9,7 @@ SEPARATOR_NAME = '---'
 def cli = new CliBuilder(usage:'bookmark_generator.groovy [options] inputfile')
 cli.with {
     h(longOpt: 'help', 'Help - Usage Information')
+    s(longOpt: 'startat', args:1, 'Node point to start navigating at')
     t(longOpt: 'tagall', args:1, 'Tag to add to every bookmark')
     n(longOpt: 'numberall', 'Add numbering to all bookmarks to retain order')
 }
@@ -32,8 +33,14 @@ number_all = options.n
 tag_all = options.t
 def filename = options.arguments()[0]
 
-// load bookmark daa
+// load bookmark data
 def rootLevelBookmarks = new Yaml().load(new FileReader(filename))
+// check for custom starting node or the default bookmarks node
+if (options.s) {
+    rootLevelBookmarks = rootLevelBookmarks["${options.s}"]
+} else if (rootLevelBookmarks instanceof Map && rootLevelBookmarks["bookmarks"]) {
+    rootLevelBookmarks = rootLevelBookmarks["bookmarks"]
+}
 
 // Writer out = new FileWriter("intergamma-dev-shared-bookmarks.html")
 def out = new OutputStreamWriter(System.out)
@@ -74,7 +81,7 @@ def generateBookmarks(nodes, level, out) {
 	def orderCounter = 1
 	out.write("${indent}<DL><p>\n")
 	nodes.each { node ->
-		
+
 		// counter
 		def counter = ''
 		if (nrDigits > 0) {
