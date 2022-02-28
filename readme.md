@@ -20,6 +20,7 @@ there is a container image that automatically built you can use instead of build
 ```
 docker run --rm -it ghcr.io/georgettica/bookmark-generator:master 
 ```
+or look at this snazzy github page with details on this https://github.com/georgettica/bookmark-generator/pkgs/container/bookmark-generator
 
 ## Example input yaml:
 
