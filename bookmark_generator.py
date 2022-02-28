@@ -34,7 +34,7 @@ import sys
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-s', '--startat', help="node point to start navigating at")
+parser.add_argument('-s', '--startat', help="node point to start navigating at (default: bookmarks)")
 parser.add_argument('-t', '--tag', help="add a tag to all bookmarks")
 parser.add_argument('-o', '--output', help="the bookmark output file")
 parser.add_argument("inputfile", help="the bookmark input file")

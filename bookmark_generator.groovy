@@ -9,7 +9,7 @@ SEPARATOR_NAME = '---'
 def cli = new CliBuilder(usage:'bookmark_generator.groovy [options] inputfile')
 cli.with {
     h(longOpt: 'help', 'Help - Usage Information')
-    s(longOpt: 'startat', args:1, 'Node point to start navigating at')
+    s(longOpt: 'startat', args:1, 'Node point to start navigating at (default: bookmarks)')
     t(longOpt: 'tagall', args:1, 'Tag to add to every bookmark')
     n(longOpt: 'numberall', 'Add numbering to all bookmarks to retain order')
 }
