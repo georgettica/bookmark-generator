@@ -34,12 +34,19 @@ import sys
 import argparse
 
 parser = argparse.ArgumentParser()
+parser.add_argument('-s', '--startat', help="node point to start navigating at (default: bookmarks)")
 parser.add_argument('-t', '--tag', help="add a tag to all bookmarks")
 parser.add_argument('-o', '--output', help="the bookmark output file")
 parser.add_argument("inputfile", help="the bookmark input file")
 args = parser.parse_args()
 
 bookmark_data = yaml.safe_load(open(args.inputfile))
+
+if args.startat:
+	bookmark_data = bookmark_data[args.startat]
+elif isinstance(bookmark_data, dict) and bookmark_data['bookmarks']:
+	bookmark_data = bookmark_data['bookmarks']
+
 
 out = sys.stdout
 
@@ -49,7 +56,7 @@ tag_all = args.tag
 
 if args.output:
 	out = open(args.output, "w")
-	
+
 # write bookmark file header
 out.write('''<!DOCTYPE NETSCAPE-Bookmark-file-1>
 <!-- This is an automatically generated file.
