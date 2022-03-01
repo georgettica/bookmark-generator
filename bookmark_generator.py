@@ -41,9 +41,10 @@ parser.add_argument("inputfile", help="the bookmark input file")
 args = parser.parse_args()
 
 bookmark_data = yaml.safe_load(open(args.inputfile))
+
 if args.startat:
 	bookmark_data = bookmark_data[args.startat]
-elif bookmark_data['bookmarks']:
+elif isinstance(bookmark_data, dict) and bookmark_data['bookmarks']:
 	bookmark_data = bookmark_data['bookmarks']
 
 
