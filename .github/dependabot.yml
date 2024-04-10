@@ -14,7 +14,6 @@ updates:
   - "georgettica"
 - directory: "/"
   labels:
-  - "dependency"
   - "merge when passing"
   package-ecosystem: "github-actions"
   schedule:
